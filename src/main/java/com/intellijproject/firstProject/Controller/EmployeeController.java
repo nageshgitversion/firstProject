@@ -7,10 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/employee")
@@ -25,4 +24,13 @@ public class EmployeeController {
 
         return new ResponseEntity<>(employeeDto1, HttpStatus.CREATED);
     }
+
+    @GetMapping("/getlist")
+    public ResponseEntity<List<EmployeeDto>> getEmployeesList(){
+
+        List<EmployeeDto> employeesList = employeeService.getEmployeesList();
+
+        return  new ResponseEntity<>(employeesList,HttpStatus.OK);
+    }
+
 }

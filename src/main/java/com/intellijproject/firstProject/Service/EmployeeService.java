@@ -7,6 +7,10 @@ import com.intellijproject.firstProject.Repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class EmployeeService {
 
@@ -22,6 +26,14 @@ public class EmployeeService {
 
         return EmployeeMapper.INSTANCE.employeeToEmployeeDto(employee);
     }
+
+    public List<EmployeeDto> getEmployeesList(){
+
+        List<EmployeeDto> list = empRepo.findAll().stream().map(EmployeeMapper.INSTANCE::employeeToEmployeeDto).collect(Collectors.toList());
+
+        return  list;
+    }
+
 
 
 }
