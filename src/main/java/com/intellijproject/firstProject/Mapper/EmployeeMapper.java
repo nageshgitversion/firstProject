@@ -5,10 +5,10 @@ import com.intellijproject.firstProject.Entity.Employee;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface EmployeeMapper {
 
-   EmployeeMapper INSTACNE =  Mappers.getMapper(EmployeeMapper.class);
+   EmployeeMapper INSTANCE =  Mappers.getMapper(EmployeeMapper.class);
 
    Employee employeeDtoToEmployee(EmployeeDto employeeDto);
 

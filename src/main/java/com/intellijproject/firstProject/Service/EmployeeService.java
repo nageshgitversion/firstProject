@@ -15,9 +15,12 @@ public class EmployeeService {
 
 
     public EmployeeDto saveEmployeeData(EmployeeDto employeeDto){
-        Employee employee = empRepo.save(EmployeeMapper.INSTACNE.employeeDtoToEmployee(employeeDto));
 
-        return EmployeeMapper.INSTACNE.employeeToEmployeeDto(employee);
+        Employee employee = empRepo.save(EmployeeMapper.INSTANCE.employeeDtoToEmployee(employeeDto));
+
+
+
+        return EmployeeMapper.INSTANCE.employeeToEmployeeDto(employee);
     }
 
 
