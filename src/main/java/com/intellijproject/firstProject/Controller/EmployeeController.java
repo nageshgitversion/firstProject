@@ -7,6 +7,7 @@ import com.intellijproject.firstProject.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,14 +20,14 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    @PostMapping("/saveuser")
+    @PostMapping(value ="/saveuser")
     public ResponseEntity<EmployeeDto> saveEmployee(@RequestBody EmployeeDto employeeDto){
         EmployeeDto employeeDto1 = employeeService.saveEmployeeData(employeeDto);
 
         return new ResponseEntity<>(employeeDto1, HttpStatus.CREATED);
     }
 
-    @GetMapping("/getlist")
+    @GetMapping(value = "/getlist")
     public ResponseEntity<List<EmployeeDto>> getEmployeesList(){
 
         List<EmployeeDto> employeesList = employeeService.getEmployeesList();
