@@ -2,6 +2,7 @@ package com.intellijproject.firstProject.Controller;
 
 import com.intellijproject.firstProject.Dto.EmployeeDto;
 import com.intellijproject.firstProject.Entity.Employee;
+import com.intellijproject.firstProject.Exception.UserNotFoundException;
 import com.intellijproject.firstProject.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,5 +33,13 @@ public class EmployeeController {
 
         return  new ResponseEntity<>(employeesList,HttpStatus.OK);
     }
+
+
+    @GetMapping("/getbyid/{empId}")
+    public ResponseEntity<EmployeeDto> getEmployee(@PathVariable Integer empId) throws UserNotFoundException {
+        EmployeeDto employeeDto = employeeService.getEmployeeId(empId);
+        return new ResponseEntity<>(employeeDto,HttpStatus.OK);
+    }
+
 
 }
