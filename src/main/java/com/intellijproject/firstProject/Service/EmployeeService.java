@@ -19,6 +19,8 @@ public class EmployeeService {
     @Autowired
     private EmployeeRepository empRepo;
 
+    private String name;
+
 
     public EmployeeDto saveEmployeeData(EmployeeDto employeeDto){
 

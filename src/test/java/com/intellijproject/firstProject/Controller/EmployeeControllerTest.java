@@ -1,7 +1,9 @@
 package com.intellijproject.firstProject.Controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.intellijproject.firstProject.Dto.EmployeeDto;
+import com.intellijproject.firstProject.Exception.UserNotFoundException;
 import com.intellijproject.firstProject.FirstProjectApplication;
 import com.intellijproject.firstProject.Service.EmployeeService;
 import org.checkerframework.checker.units.qual.A;
@@ -104,6 +106,23 @@ class EmployeeControllerTest {
         Assertions.assertEquals(mvcResult.getResponse().getContentAsString(), jsonContent);
 
 
+    }
+
+
+    @Test
+    public void getEmployeeByIdTest() throws Exception {
+        EmployeeDto employee1 = new EmployeeDto();
+        employee1.setEmpId(1);
+        employee1.setName("Mahesh");
+        employee1.setCity("Vijayawada");
+        employee1.setSalary(25000);
+
+        String jsonContent = new ObjectMapper().writeValueAsString(employee1);
+
+        when(employeeService.getEmployeeId(employee1.getEmpId())).thenReturn(employee1);
+
+        MvcResult mvcResult = mockMvc.perform(get("/employee/getbyid/"+employee1.getEmpId()).contentType(MediaType.APPLICATION_JSON)).andReturn();
+        Assertions.assertEquals(200,mvcResult.getResponse().getStatus());
     }
 
 
