@@ -49,5 +49,16 @@ public class EmployeeService {
     }
 
 
+public List<EmployeeDto> findCity(String city){
+    List<Employee> empList = empRepo.findByCity(city);
+
+    List<EmployeeDto> list = empList.stream().map(EmployeeMapper.INSTANCE::employeeToEmployeeDto).collect(Collectors.toList());
+
+
+    return list;
+}
+
+
+
 
 }

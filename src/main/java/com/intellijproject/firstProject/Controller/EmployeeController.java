@@ -43,6 +43,11 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeDto,HttpStatus.OK);
     }
 
+    @GetMapping("/getbycity/{city}")
+    public ResponseEntity<List<EmployeeDto>> getByCity(@PathVariable String city)  {
+        List<EmployeeDto> city1 = employeeService.findCity(city);
+        return new ResponseEntity<>(city1,HttpStatus.OK);
+    }
 
 
 }

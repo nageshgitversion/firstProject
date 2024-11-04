@@ -125,5 +125,33 @@ class EmployeeControllerTest {
         Assertions.assertEquals(200,mvcResult.getResponse().getStatus());
     }
 
+@Test
+    public void getEmployeeByCityTest() throws Exception {
+
+        String city = "vijayawada";
+
+        EmployeeDto employee1 = new EmployeeDto();
+        employee1.setEmpId(1);
+        employee1.setName("Mahesh");
+        employee1.setCity("vijayawada");
+        employee1.setSalary(25000);
+
+        EmployeeDto employee2 = new EmployeeDto();
+        employee2.setEmpId(2);
+        employee2.setName("Suresh");
+        employee2.setCity("vijayawada");
+        employee2.setSalary(30000);
+
+        ArrayList<EmployeeDto> list = new ArrayList<>();
+        list.add(employee1);
+        list.add(employee2);
+
+        when(employeeService.findCity(employee1.getCity())).thenReturn(list);
+
+        MvcResult mvcResult = mockMvc.perform(get("/employee/getbycity/" + employee1.getCity()).contentType(MediaType.APPLICATION_JSON)).andReturn();
+
+        Assertions.assertEquals(200,mvcResult.getResponse().getStatus());
+    }
+
 
 }
