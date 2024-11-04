@@ -38,15 +38,11 @@ public class EmployeeController {
 
     @GetMapping("/getbyid/{empId}")
     public ResponseEntity<EmployeeDto> getEmployee(@PathVariable Integer empId) throws UserNotFoundException {
+        String name;
         EmployeeDto employeeDto = employeeService.getEmployeeId(empId);
         return new ResponseEntity<>(employeeDto,HttpStatus.OK);
     }
 
-    @GetMapping("/getbycity/{name}")
-    public ResponseEntity<List<EmployeeDto>> getByCity(@PathVariable String name)  {
-        List<EmployeeDto> name1 = employeeService.findCity(name);
-        return new ResponseEntity<>(name1,HttpStatus.OK);
-    }
 
 
 }
